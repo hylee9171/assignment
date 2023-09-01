@@ -1,30 +1,32 @@
 package com.assignment.assignment.domain;
 
 import lombok.Getter;
-import lombok.Setter;
-
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
-
 import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Table(name = "job_history")
+@Table(name="job_history")
+@IdClass(JobHistoryId.class)
 @Getter
-@Setter
+@NoArgsConstructor
 public class JobHistory {
 
     @Id
-    @GeneratedValue
-    @Column(name="start_date")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="employee_id")
+    private int employeeId;
+
+    @Id
     @Temporal(TemporalType.DATE)
     private Date startDate;
+
     @Temporal(TemporalType.DATE)
     private Date endDate;
 
-    @ManyToOne(fetch = EAGER)
+    @MapsId("employee_id")
+    @ManyToOne(fetch = EAGER,optional = false)
     @JoinColumn(name="employee_id")
     private Employee employee;
 
@@ -35,6 +37,5 @@ public class JobHistory {
     @ManyToOne(fetch = EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;
-
 
 }

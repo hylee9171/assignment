@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -34,10 +33,4 @@ public class JobRepository {
                                 .setParameter("id",employeeId)
                                 .getResultList();
     }
-//
-//    public List<JobHistory> getJobHistory(String id) {
-//        return em.createQuery("select jh from JobHistory jh join jh.job j where j.id = :id", JobHistory.class)
-//                .setParameter("id",id)
-//                .getResultList();
-//    }
 }

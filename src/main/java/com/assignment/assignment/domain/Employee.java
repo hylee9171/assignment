@@ -1,16 +1,12 @@
 package com.assignment.assignment.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
-
+import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
@@ -18,6 +14,7 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "employees")
 @Getter
 @Setter
+@DynamicUpdate
 public class Employee {
 
     @Id
@@ -34,15 +31,9 @@ public class Employee {
     private Long managerId;
     private String jobId;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee", fetch = LAZY)
     private List<JobHistory> jobHistories = new ArrayList<>();
 
-    public void addHistory(JobHistory jobHistory) {
-        jobHistories.add(jobHistory);
-        jobHistory.setEmployee(this);
-    }
-
-    @JsonBackReference
     @ManyToOne(fetch = EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Department department;

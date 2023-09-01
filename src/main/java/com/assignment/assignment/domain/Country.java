@@ -1,9 +1,6 @@
 package com.assignment.assignment.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +11,6 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Table(name = "countries")
 @Getter
-@Setter
 public class Country {
 
     @Id
@@ -23,7 +19,6 @@ public class Country {
     private String id;
     private String countryName;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "country", fetch = LAZY)
     private List<Location> locations = new ArrayList<>();
 

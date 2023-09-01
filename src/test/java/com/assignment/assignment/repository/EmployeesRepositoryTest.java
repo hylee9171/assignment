@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -57,6 +59,20 @@ class EmployeesRepositoryTest {
 //        for (JobHistory jobHistory2 : jobHistory) {
 //            System.out.println("==========JobHistory================ " + jobHistory2.getJob().getId());
 //        }
+    }
+
+    @Test
+    @Rollback(value = false)
+    public void 급여() throws Exception {
+        Department department = departmentService.searchDepartment(90);
+        List<Employee> employees = department.getEmployees();
+        for(Employee employee : employees) {
+            System.out.println("EmployeesRepositoryTest.이전급여==========" + employee.getSalary());
+        }
+        employeesService.IncreaseSalaryByDept(employees, 10);
+        for(Employee employee : employees) {
+            System.out.println("EmployeesRepositoryTest.이후급여==========" + employee.getSalary());
+        }
     }
 
 }

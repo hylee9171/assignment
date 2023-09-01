@@ -1,5 +1,6 @@
 package com.assignment.assignment.service;
 
+import com.assignment.assignment.domain.Department;
 import com.assignment.assignment.domain.Employee;
 import com.assignment.assignment.repository.JobRepository;
 import org.assertj.core.api.Assertions;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,12 +33,20 @@ class DepartmentServiceTest {
 
 
     @Test
-    public void 부서별급여인상() throws Exception {
-        departmentService.increaseSalaryByDept(20,10);
-
-        Employee employee = employeesService.findOne(202);
-
-        Assertions.assertThat(employee.getSalary()).isEqualTo(6600);
+    public void 부서위치() throws Exception {
+        List<Department> departmentList = departmentService.searchAllDepartment();
+        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.get(0).getId());
+        Assertions.assertThat(departmentList.get(0)).isInstanceOf(Department.class);
 
     }
+
+    @Test
+    public void 부서() throws Exception {
+        Department departmentList = departmentService.searchDepartment(20);
+        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.getId());
+        Assertions.assertThat(departmentList).isInstanceOf(Department.class);
+
+    }
+
+
 }

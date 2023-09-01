@@ -1,7 +1,6 @@
 package com.assignment.assignment.repository;
 
 import com.assignment.assignment.domain.Employee;
-import com.assignment.assignment.domain.JobHistory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +23,10 @@ public class EmployeesRepository {
 
     public void save(Employee employee) {
         em.persist(employee);
+    }
+
+    public void saveSalary(Employee employee, int increased) {
+        employee.setSalary(employee.getSalary()+increased);
     }
 
 

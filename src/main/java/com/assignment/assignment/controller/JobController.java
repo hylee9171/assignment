@@ -1,8 +1,6 @@
 package com.assignment.assignment.controller;
 
-import com.assignment.assignment.domain.Employee;
 import com.assignment.assignment.domain.JobHistory;
-import com.assignment.assignment.service.EmployeesService;
 import com.assignment.assignment.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,7 @@ public class JobController {
     public String createForm(Model model) {
         List<JobHistory> jobHistories = new ArrayList<>();
         model.addAttribute("jobHistories", jobHistories);
-        return "employees/jobHistory";
+        return "details/jobHistory";
     }
 
     @GetMapping("/jobHistory")
@@ -33,7 +31,7 @@ public class JobController {
         }
 
         model.addAttribute("jobHistories",jobHistories);
-        return "employees/jobHistory";
+        return "details/jobHistory";
     }
 
 }
