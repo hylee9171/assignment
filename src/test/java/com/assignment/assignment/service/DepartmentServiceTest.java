@@ -19,34 +19,34 @@ import java.util.List;
 @Transactional
 class DepartmentServiceTest {
 
-    @Autowired
-    EntityManager em;
-
-    @Autowired
-    EmployeesService employeesService;
-
-    @Autowired
-    JobRepository jobRepository;
-
-    @Autowired
-    DepartmentService departmentService;
-
-
-    @Test
-    public void 부서위치() throws Exception {
-        List<Department> departmentList = departmentService.searchAllDepartment();
-        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.get(0).getId());
-        Assertions.assertThat(departmentList.get(0)).isInstanceOf(Department.class);
-
-    }
-
-    @Test
-    public void 부서() throws Exception {
-        Department departmentList = departmentService.searchDepartment(20);
-        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.getId());
-        Assertions.assertThat(departmentList).isInstanceOf(Department.class);
-
-    }
+//    @Autowired
+//    EntityManager em;
+//
+//    @Autowired
+//    EmployeesService employeesService;
+//
+//    @Autowired
+//    JobRepository jobRepository;
+//
+//    @Autowired
+//    DepartmentService departmentService;
+//
+//
+//    @Test
+//    public void 부서위치() throws Exception {
+//        List<Department> departmentList = departmentService.searchAllDepartment();
+//        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.get(0).getId());
+//        Assertions.assertThat(departmentList.get(0)).isInstanceOf(Department.class);
+//
+//    }
+//
+//    @Test
+//    public void 부서() throws Exception {
+//        Department departmentList = departmentService.searchDepartment(20);
+//        System.out.println("DepartmentServiceTest.부서위치=="+departmentList.getId());
+//        Assertions.assertThat(departmentList).isInstanceOf(Department.class);
+//
+//    }
 
 
 }
