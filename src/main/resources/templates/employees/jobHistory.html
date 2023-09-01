@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div>
+        <div>
+            <form th:action="@{/jobHistory}" method="get">
+                <div class="form-group mb-2">
+                    <input type="text" name="employeeId" placeholder="직원아이디">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">검색</button>
+            </form>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>직책</th>
+                <th>부서</th>
+                <th>시작일</th>
+                <th>종료일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="jobHistory : ${jobHistories}">
+                <td th:text="${jobHistory.employee.id}"></td>
+                <td th:text="${jobHistory.employee.firstName}"></td>
+                <td th:text="${jobHistory.job.jobTitle}"></td>
+                <td th:text="${jobHistory.department.departmentName}"></td>
+                <td th:text="${jobHistory.startDate}"></td>
+                <td th:text="${jobHistory.endDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+
+</div> <!-- /container -->
+
+</body>
+</html>

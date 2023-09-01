@@ -1,0 +1,35 @@
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/test_db
+#    username: postgres
+#    password: !gpwls9945
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        format_sql: true
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@orcl.ceoxnmjko1gy.ap-northeast-2.rds.amazonaws.com:1521:DATABASE
+    username: admin
+    password: admin1234
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: oracle
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+    database-platfomr: org.hibernate.dialect.Oracle10gDialect
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
